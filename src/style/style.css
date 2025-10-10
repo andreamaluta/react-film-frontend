@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+.card {
+    background-color: #000057;
+    color: #CCCCCC;
+}
+
+.btn {
+    background-color: #F5C518;
+    border: none;
+    color: black;
+}
+
+.btn:hover {
+    background-color: #c99d00;
+    color: black;
+    transform: scale(1.05);
+    transition: transform 0.3s ease
+}
+
+.card-title-color {
+    color: white;
+}
+
+.card-director-color {
+    color: #CCCCCC;
+}
+
+
+/* ----------- Stile della pagina index ------------------- */
+
+.card-img-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ritaglia l’immagine mantenendo le proporzioni */
+    object-position: center;
+    /* Centra il soggetto */
+    display: block;
+}
+
+.card-img-container:hover {
+    transform: scale(1.1);
+    transition: transform 0.6s ease;
+    box-shadow: 9px 9px 16px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.card {
+    border: none;
+}
+
+
+/* -------------------- Stile della pagina di dettaglio ---------------------- */
+
+.detailPoster {
+    width: 400px;
+    box-shadow: 9px 9px 16px rgba(0, 0, 0, 0.5);
+}
