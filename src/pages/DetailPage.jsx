@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
+import languageToFlag from '../function/FlagFunction';
+import LanguageFlag from '../function/FlagFunction';
 
 
 const DetailPage = () => {
@@ -35,7 +37,8 @@ const DetailPage = () => {
                                 })}
                             </h5>
 
-                            <h5 className='mb-4'>Lingua Originale: {detailFilm.original_language}</h5>
+                            <h5 className='mb-4'>Lingua Originale: <LanguageFlag language={detailFilm.original_language} />
+                            </h5>
                             <div>
                                 <h5>Trama:</h5>
                                 {detailFilm.plot}
