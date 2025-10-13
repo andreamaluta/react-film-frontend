@@ -8,6 +8,9 @@ const HomePage = () => {
 
     const [search, setSearch] = useState('')
     const [films, setFilms] = useState([])
+    const [genres, setGenres] = useState([]);
+    const [selectedGenre, setSelectedGenre] = useState('');
+
 
     useEffect(() => {
         axios.get("http://127.0.0.1:8080/api/films").then((resp) => {
@@ -16,13 +19,33 @@ const HomePage = () => {
         }).catch((err) => {
             console.log(err);
         })
+        axios.get("http://127.0.0.1:8080/api/genres").then((resp) => {
+            setGenres(resp.data);
+        }).catch((err) =>
+            console.log(err)
+        );
     }, [])
 
     const fetchFilmsByTitle = () => {
-        axios.get(`http://127.0.0.1:8080/api/films?title=${search}`)
-            .then((resp) => setFilms(resp.data))
+        let url = `http://127.0.0.1:8080/api/films`;
+
+        if (selectedGenre) {
+            url = `http://127.0.0.1:8080/api/genres/${selectedGenre}/films`;
+        }
+
+        axios.get(url)
+            .then((resp) => {
+                const filtered = search
+                    ? resp.data.filter(film =>
+                        film.title.toLowerCase().includes(search.toLowerCase()))
+                    : resp.data;
+
+                setFilms(filtered);
+            })
             .catch((err) => console.log(err));
-    }
+    };
+
+
 
     return (
 
@@ -50,6 +73,18 @@ const HomePage = () => {
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                             />
+                            <select
+                                className="form-select me-2"
+                                value={selectedGenre}
+                                onChange={(e) => setSelectedGenre(e.target.value)}
+                            >
+                                <option value="">Tutti i generi</option>
+                                {genres.map((genre) => (
+                                    <option key={genre.id} value={genre.id}>
+                                        {genre.name}
+                                    </option>
+                                ))}
+                            </select>
                             <button type="submit" className="btn">Cerca</button>
                         </div>
 
