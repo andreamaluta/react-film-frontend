@@ -45,6 +45,9 @@ const HomePage = () => {
             .catch((err) => console.log(err));
     };
 
+    useEffect(() => {
+        fetchFilmsByTitle();
+    }, [search, selectedGenre]);
 
 
     return (
@@ -59,10 +62,6 @@ const HomePage = () => {
                     </h2>
 
                     <form
-                        onSubmit={(e) => {
-                            e.preventDefault();
-                            fetchFilmsByTitle();
-                        }}
                         className="mb-4"
                     >
                         <div className='d-flex justify-content-center align-items-center'>
@@ -85,7 +84,6 @@ const HomePage = () => {
                                     </option>
                                 ))}
                             </select>
-                            <button type="submit" className="btn">Cerca</button>
                         </div>
 
                     </form>
