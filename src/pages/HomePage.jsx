@@ -49,6 +49,14 @@ const HomePage = () => {
         fetchFilmsByTitle();
     }, [search, selectedGenre]);
 
+    const fetchFilmsOrdered = () => {
+        axios.get("http://127.0.0.1:8080/api/films/ordered").then((resp) => {
+            console.log("Risposta API:", resp);
+            setFilms(resp.data);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
 
     return (
 
@@ -59,6 +67,7 @@ const HomePage = () => {
                 <div className='d-flex justify-content-between align-items-center'>
                     <h2 className='mb-3'>
                         <i>Tutti i Film</i>
+                        <div className="btn btn-order ms-3" onClick={fetchFilmsOrdered}>Ordine Alfabetico</div>
                     </h2>
 
                     <form

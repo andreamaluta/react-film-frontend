@@ -68,6 +68,14 @@ body,
     border: none;
 }
 
+.btn-order {
+    background-color: white;
+    font-size: 12px;
+}
+
+.btn-order:hover {
+    background-color: white;
+}
 
 /* -------------------- Stile della pagina di dettaglio ---------------------- */
 
